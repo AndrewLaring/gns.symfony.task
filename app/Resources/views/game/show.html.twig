@@ -1,0 +1,256 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Game</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ game.id }}</td>
+            </tr>
+            <tr>
+                <th>Gameid</th>
+                <td>{{ game.gameid }}</td>
+            </tr>
+            <tr>
+                <th>Season</th>
+                <td>{% if game.season %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Seasontype</th>
+                <td>{% if game.seasontype %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ game.status }}</td>
+            </tr>
+            <tr>
+                <th>Day</th>
+                <td>{% if game.day %}{{ game.day|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datetime</th>
+                <td>{% if game.datetime %}{{ game.datetime|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Awayteam</th>
+                <td>{{ game.awayteam }}</td>
+            </tr>
+            <tr>
+                <th>Hometeam</th>
+                <td>{{ game.hometeam }}</td>
+            </tr>
+            <tr>
+                <th>Awayteamid</th>
+                <td>{{ game.awayteamid }}</td>
+            </tr>
+            <tr>
+                <th>Hometeamid</th>
+                <td>{{ game.hometeamid }}</td>
+            </tr>
+            <tr>
+                <th>Rescheduledgameid</th>
+                <td>{{ game.rescheduledgameid }}</td>
+            </tr>
+            <tr>
+                <th>Stadiumid</th>
+                <td>{{ game.stadiumid }}</td>
+            </tr>
+            <tr>
+                <th>Channel</th>
+                <td>{{ game.channel }}</td>
+            </tr>
+            <tr>
+                <th>Inning</th>
+                <td>{{ game.inning }}</td>
+            </tr>
+            <tr>
+                <th>Inninghalf</th>
+                <td>{{ game.inninghalf }}</td>
+            </tr>
+            <tr>
+                <th>Awayteamruns</th>
+                <td>{% if game.awayteamruns %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Hometeamruns</th>
+                <td>{% if game.hometeamruns %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Awayteamhits</th>
+                <td>{% if game.awayteamhits %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Hometeamhits</th>
+                <td>{% if game.hometeamhits %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Awayteamerrors</th>
+                <td>{% if game.awayteamerrors %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Hometeamerrors</th>
+                <td>{{ game.hometeamerrors }}</td>
+            </tr>
+            <tr>
+                <th>Winningpitcherid</th>
+                <td>{{ game.winningpitcherid }}</td>
+            </tr>
+            <tr>
+                <th>Losingpitcherid</th>
+                <td>{{ game.losingpitcherid }}</td>
+            </tr>
+            <tr>
+                <th>Savingpitcherid</th>
+                <td>{{ game.savingpitcherid }}</td>
+            </tr>
+            <tr>
+                <th>Attendance</th>
+                <td>{{ game.attendance }}</td>
+            </tr>
+            <tr>
+                <th>Awayteamprobablepitcherid</th>
+                <td>{{ game.awayteamprobablepitcherid }}</td>
+            </tr>
+            <tr>
+                <th>Hometeamprobablepitcherid</th>
+                <td>{{ game.hometeamprobablepitcherid }}</td>
+            </tr>
+            <tr>
+                <th>Outs</th>
+                <td>{{ game.outs }}</td>
+            </tr>
+            <tr>
+                <th>Balls</th>
+                <td>{{ game.balls }}</td>
+            </tr>
+            <tr>
+                <th>Strikes</th>
+                <td>{{ game.strikes }}</td>
+            </tr>
+            <tr>
+                <th>Currentpitcherid</th>
+                <td>{{ game.currentpitcherid }}</td>
+            </tr>
+            <tr>
+                <th>Currenthitterid</th>
+                <td>{{ game.currenthitterid }}</td>
+            </tr>
+            <tr>
+                <th>Awayteamstartingpitcherid</th>
+                <td>{{ game.awayteamstartingpitcherid }}</td>
+            </tr>
+            <tr>
+                <th>Hometeamstartingpitcherid</th>
+                <td>{{ game.hometeamstartingpitcherid }}</td>
+            </tr>
+            <tr>
+                <th>Currentpitchingteamid</th>
+                <td>{{ game.currentpitchingteamid }}</td>
+            </tr>
+            <tr>
+                <th>Currenthittingteamid</th>
+                <td>{{ game.currenthittingteamid }}</td>
+            </tr>
+            <tr>
+                <th>Pointspread</th>
+                <td>{{ game.pointspread }}</td>
+            </tr>
+            <tr>
+                <th>Overunder</th>
+                <td>{{ game.overunder }}</td>
+            </tr>
+            <tr>
+                <th>Awayteammoneyline</th>
+                <td>{{ game.awayteammoneyline }}</td>
+            </tr>
+            <tr>
+                <th>Hometeammoneyline</th>
+                <td>{{ game.hometeammoneyline }}</td>
+            </tr>
+            <tr>
+                <th>Forecasttemplow</th>
+                <td>{{ game.forecasttemplow }}</td>
+            </tr>
+            <tr>
+                <th>Forecasttemphigh</th>
+                <td>{{ game.forecasttemphigh }}</td>
+            </tr>
+            <tr>
+                <th>Forecastdescription</th>
+                <td>{{ game.forecastdescription }}</td>
+            </tr>
+            <tr>
+                <th>Forecastwindchill</th>
+                <td>{{ game.forecastwindchill }}</td>
+            </tr>
+            <tr>
+                <th>Forecastwindspeed</th>
+                <td>{{ game.forecastwindspeed }}</td>
+            </tr>
+            <tr>
+                <th>Forecastwinddirection</th>
+                <td>{{ game.forecastwinddirection }}</td>
+            </tr>
+            <tr>
+                <th>Rescheduledfromgameid</th>
+                <td>{{ game.rescheduledfromgameid }}</td>
+            </tr>
+            <tr>
+                <th>Runneronfirst</th>
+                <td>{{ game.runneronfirst }}</td>
+            </tr>
+            <tr>
+                <th>Runneronsecond</th>
+                <td>{{ game.runneronsecond }}</td>
+            </tr>
+            <tr>
+                <th>Runneronthird</th>
+                <td>{{ game.runneronthird }}</td>
+            </tr>
+            <tr>
+                <th>Winningpitcher</th>
+                <td>{{ game.winningpitcher }}</td>
+            </tr>
+            <tr>
+                <th>Losingpitcher</th>
+                <td>{{ game.losingpitcher }}</td>
+            </tr>
+            <tr>
+                <th>Savingpitcher</th>
+                <td>{{ game.savingpitcher }}</td>
+            </tr>
+            <tr>
+                <th>Awayteamstartingpitcher</th>
+                <td>{{ game.awayteamstartingpitcher }}</td>
+            </tr>
+            <tr>
+                <th>Hometeamstartingpitcher</th>
+                <td>{{ game.hometeamstartingpitcher }}</td>
+            </tr>
+            <tr>
+                <th>Currentpitcher</th>
+                <td>{{ game.currentpitcher }}</td>
+            </tr>
+            <tr>
+                <th>Currenthitter</th>
+                <td>{{ game.currenthitter }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('game_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('game_edit', { 'id': game.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

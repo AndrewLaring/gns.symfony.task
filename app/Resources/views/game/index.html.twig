@@ -1,0 +1,151 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Games list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Gameid</th>
+                <th>Season</th>
+                <th>Seasontype</th>
+                <th>Status</th>
+                <th>Day</th>
+                <th>Datetime</th>
+                <th>Awayteam</th>
+                <th>Hometeam</th>
+                <th>Awayteamid</th>
+                <th>Hometeamid</th>
+                <th>Rescheduledgameid</th>
+                <th>Stadiumid</th>
+                <th>Channel</th>
+                <th>Inning</th>
+                <th>Inninghalf</th>
+                <th>Awayteamruns</th>
+                <th>Hometeamruns</th>
+                <th>Awayteamhits</th>
+                <th>Hometeamhits</th>
+                <th>Awayteamerrors</th>
+                <th>Hometeamerrors</th>
+                <th>Winningpitcherid</th>
+                <th>Losingpitcherid</th>
+                <th>Savingpitcherid</th>
+                <th>Attendance</th>
+                <th>Awayteamprobablepitcherid</th>
+                <th>Hometeamprobablepitcherid</th>
+                <th>Outs</th>
+                <th>Balls</th>
+                <th>Strikes</th>
+                <th>Currentpitcherid</th>
+                <th>Currenthitterid</th>
+                <th>Awayteamstartingpitcherid</th>
+                <th>Hometeamstartingpitcherid</th>
+                <th>Currentpitchingteamid</th>
+                <th>Currenthittingteamid</th>
+                <th>Pointspread</th>
+                <th>Overunder</th>
+                <th>Awayteammoneyline</th>
+                <th>Hometeammoneyline</th>
+                <th>Forecasttemplow</th>
+                <th>Forecasttemphigh</th>
+                <th>Forecastdescription</th>
+                <th>Forecastwindchill</th>
+                <th>Forecastwindspeed</th>
+                <th>Forecastwinddirection</th>
+                <th>Rescheduledfromgameid</th>
+                <th>Runneronfirst</th>
+                <th>Runneronsecond</th>
+                <th>Runneronthird</th>
+                <th>Winningpitcher</th>
+                <th>Losingpitcher</th>
+                <th>Savingpitcher</th>
+                <th>Awayteamstartingpitcher</th>
+                <th>Hometeamstartingpitcher</th>
+                <th>Currentpitcher</th>
+                <th>Currenthitter</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for game in games %}
+            <tr>
+                <td><a href="{{ path('game_show', { 'id': game.id }) }}">{{ game.id }}</a></td>
+                <td>{{ game.gameid }}</td>
+                <td>{% if game.season %}Yes{% else %}No{% endif %}</td>
+                <td>{% if game.seasontype %}Yes{% else %}No{% endif %}</td>
+                <td>{{ game.status }}</td>
+                <td>{% if game.day %}{{ game.day|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if game.datetime %}{{ game.datetime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ game.awayteam }}</td>
+                <td>{{ game.hometeam }}</td>
+                <td>{{ game.awayteamid }}</td>
+                <td>{{ game.hometeamid }}</td>
+                <td>{{ game.rescheduledgameid }}</td>
+                <td>{{ game.stadiumid }}</td>
+                <td>{{ game.channel }}</td>
+                <td>{{ game.inning }}</td>
+                <td>{{ game.inninghalf }}</td>
+                <td>{% if game.awayteamruns %}Yes{% else %}No{% endif %}</td>
+                <td>{% if game.hometeamruns %}Yes{% else %}No{% endif %}</td>
+                <td>{% if game.awayteamhits %}Yes{% else %}No{% endif %}</td>
+                <td>{% if game.hometeamhits %}Yes{% else %}No{% endif %}</td>
+                <td>{% if game.awayteamerrors %}Yes{% else %}No{% endif %}</td>
+                <td>{{ game.hometeamerrors }}</td>
+                <td>{{ game.winningpitcherid }}</td>
+                <td>{{ game.losingpitcherid }}</td>
+                <td>{{ game.savingpitcherid }}</td>
+                <td>{{ game.attendance }}</td>
+                <td>{{ game.awayteamprobablepitcherid }}</td>
+                <td>{{ game.hometeamprobablepitcherid }}</td>
+                <td>{{ game.outs }}</td>
+                <td>{{ game.balls }}</td>
+                <td>{{ game.strikes }}</td>
+                <td>{{ game.currentpitcherid }}</td>
+                <td>{{ game.currenthitterid }}</td>
+                <td>{{ game.awayteamstartingpitcherid }}</td>
+                <td>{{ game.hometeamstartingpitcherid }}</td>
+                <td>{{ game.currentpitchingteamid }}</td>
+                <td>{{ game.currenthittingteamid }}</td>
+                <td>{{ game.pointspread }}</td>
+                <td>{{ game.overunder }}</td>
+                <td>{{ game.awayteammoneyline }}</td>
+                <td>{{ game.hometeammoneyline }}</td>
+                <td>{{ game.forecasttemplow }}</td>
+                <td>{{ game.forecasttemphigh }}</td>
+                <td>{{ game.forecastdescription }}</td>
+                <td>{{ game.forecastwindchill }}</td>
+                <td>{{ game.forecastwindspeed }}</td>
+                <td>{{ game.forecastwinddirection }}</td>
+                <td>{{ game.rescheduledfromgameid }}</td>
+                <td>{{ game.runneronfirst }}</td>
+                <td>{{ game.runneronsecond }}</td>
+                <td>{{ game.runneronthird }}</td>
+                <td>{{ game.winningpitcher }}</td>
+                <td>{{ game.losingpitcher }}</td>
+                <td>{{ game.savingpitcher }}</td>
+                <td>{{ game.awayteamstartingpitcher }}</td>
+                <td>{{ game.hometeamstartingpitcher }}</td>
+                <td>{{ game.currentpitcher }}</td>
+                <td>{{ game.currenthitter }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('game_show', { 'id': game.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('game_edit', { 'id': game.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('games_game_parse') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

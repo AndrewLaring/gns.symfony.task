@@ -1,0 +1,19 @@
+games_game_homepage:
+    path:     /
+    defaults: { _controller: GamesGameBundle:Default:index }
+
+games_game_parse:
+    path:     /parse
+    defaults: { _controller: GamesGameBundle:Game:parse }
+    requirements: { _format: (xml|json) }
+    methods:  GET|POST
+
+games_game_show:
+    path:     /show
+    defaults: { _controller: GamesGameBundle:Default:show }
+    methods:  GET|POST
+
+games_game_schedule:
+    path:     /schedule
+    defaults: { _controller: GamesGameBundle:Schedule:index }
+    methods:  GET|POST

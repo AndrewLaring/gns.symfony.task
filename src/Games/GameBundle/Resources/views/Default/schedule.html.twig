@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if not games %}
+        <p>There is no games with your params.</p>
+    {% endif %}
+
+    {% for game in games %}
+
+        {{ game.day|date("m/d/Y") }} | {{ game.awayteam }} | {{ game.hometeam }} | {{ game.stadiumid }} <br>
+    {% endfor %}
+    <ul>
+        <li>
+            <a href="{{ path('games_game_homepage') }}">Back home</a>
+        </li>
+    </ul>
+{% endblock %}

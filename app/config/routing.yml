@@ -1,0 +1,11 @@
+games_game_game:
+    resource: "@GamesGameBundle/Controller/GameController.php"
+    type:     annotation
+
+games_game:
+    resource: "@GamesGameBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
