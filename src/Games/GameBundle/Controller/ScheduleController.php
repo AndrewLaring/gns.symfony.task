@@ -13,7 +13,6 @@ class ScheduleController extends Controller
         if (!$request->isMethod(Request::METHOD_POST)) {
             return $this->redirect($this->generateUrl('games_game_homepage'));
         }
-        
         $game = $request->get('game');
         $games = $this->get('games_service')->showAction($game);
         $games = json_decode($games->getContent());
