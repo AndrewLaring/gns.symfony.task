@@ -35,6 +35,7 @@ class DefaultController extends Controller
         $qb = $em->createQueryBuilder('g')
             ->select('g')
             ->from('GamesGameBundle:Game', 'g');
+        // add if(isValid)
         foreach ($game as $k => $v) {
             if (isset($v) && $v != null) {
                 $qb->andWhere("g.{$k} = '$v'");

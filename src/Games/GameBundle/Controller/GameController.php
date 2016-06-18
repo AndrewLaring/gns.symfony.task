@@ -47,6 +47,8 @@ class GameController extends Controller
         $format = 'JSON';
 //        $season = $games['season'];
         $season = '2016';
+        // add if(isValid($format))
+        // add if(isValid($season))
         $subKey = '64d53ab39e8444d5bca40439bc3d0a68';
 
         $request = new Http_Request2('https://api.fantasydata.net/mlb/v2/' . $format . '/Games/' . $season . '');

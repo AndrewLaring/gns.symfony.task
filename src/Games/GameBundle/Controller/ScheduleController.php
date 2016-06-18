@@ -14,6 +14,7 @@ class ScheduleController extends Controller
             return $this->redirect($this->generateUrl('games_game_homepage'));
         }
         $game = $request->get('game');
+        // add if($game->validate())
         $games = $this->get('games_service')->showAction($game);
         $games = json_decode($games->getContent());
         return $this->render('GamesGameBundle:Default:schedule.html.twig', [
