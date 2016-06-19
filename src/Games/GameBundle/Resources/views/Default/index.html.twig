@@ -3,7 +3,9 @@
 {% block body %}
 
     <header>
-        <h1>Press<a href="{{ path('games_game_parse') }}"><button>Parse</button></a></h1>
+        <h1>Press<a href="{{ path('games_game_parse') }}">
+                <button>Parse</button>
+            </a></h1>
         2015 season in JSON format.<br>
         Now it's hardcoded but in future can add dropdown to change season amd format
         <h2>or look schdule :</h2>
@@ -12,7 +14,7 @@
         {{ form_start(form, { name: 'game', 'action': path('games_game_schedule'), 'method': 'POST', 'attr': {'class': 'games'} }) }}
         {{ form_errors(form) }}
 
-        {#{{ form_row(form.stadiumid) }}#}
+        {{ form_widget(form._token) }}
         input MIN here
         {{ form_row(form.hometeam) }}
         input TOR here

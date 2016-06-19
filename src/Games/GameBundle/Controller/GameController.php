@@ -43,6 +43,8 @@ class GameController extends Controller
     public function parseAction(Request $req)
     {
         $games = $req->get('games');
+        $format = $req->get('format');
+
 //        $format = $games['format'];
         $format = 'JSON';
 //        $season = $games['season'];

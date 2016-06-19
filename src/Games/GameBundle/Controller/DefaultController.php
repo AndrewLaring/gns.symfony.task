@@ -2,6 +2,7 @@
 
 namespace Games\GameBundle\Controller;
 
+use JMS\Serializer\SerializerBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Games\GameBundle\Entity\Game;
@@ -21,9 +22,6 @@ class DefaultController extends Controller
     {
         $game = new Game();
         $form = $this->createForm(GameType::class, $game);
-        if ($form->isValid()) {
-            return $this->redirect($this->generateUrl('games_game_homepage'));
-        }
         return $this->render('GamesGameBundle:Default:index.html.twig', [
             'form' => $form->createView()
         ]);
@@ -31,23 +29,24 @@ class DefaultController extends Controller
 
     public function showAction($game)
     {
+        $serializer = SerializerBuilder::create()->build();
+        $game = $serializer->toArray($game);
+
         $em = $this->getDoctrine()->getManager();
-        $qb = $em->createQueryBuilder('g')
+        $qb = $em->createQueryBuilder()
             ->select('g')
             ->from('GamesGameBundle:Game', 'g');
-        // add if(isValid)
         foreach ($game as $k => $v) {
             if (isset($v) && $v != null) {
+                var_dump($k . '=>' . $v);
                 $qb->andWhere("g.{$k} = '$v'");
             }
         }
-        $games = $qb->getQuery()
-            ->getArrayResult();
+        $games = $qb->getQuery()->getArrayResult();
 
         $response = new Response();
         $response->setContent(json_encode($games));
         $response->headers->set('Content-Type', 'application/json');
-        
         return $response;
     }
 }

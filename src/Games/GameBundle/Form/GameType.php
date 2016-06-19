@@ -7,6 +7,8 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class GameType extends AbstractType
 {
@@ -24,10 +26,12 @@ class GameType extends AbstractType
             ->add('day', 'date')
             ->add('datetime', 'datetime')
             ->add('awayteam', TextType::class, [
+                'constraints' => new Length(array('min' => 2, 'max' => 3)),
                 'required'    => false,
                 'empty_data'  => null
             ])
             ->add('hometeam', TextType::class, [
+                'constraints' => new Length(array('min' => 2, 'max' => 3)),
                 'required'    => false,
                 'empty_data'  => null
             ])
@@ -35,8 +39,7 @@ class GameType extends AbstractType
             ->add('hometeamid')
             ->add('rescheduledgameid')
             ->add('stadiumid', IntegerType::class, [
-                'required'    => false,
-                'empty_data'  => null
+                'required'    => false
             ])
             ->add('channel')
             ->add('inning')

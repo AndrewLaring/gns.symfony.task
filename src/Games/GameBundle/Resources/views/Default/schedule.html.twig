@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    {% if not games %}
+    {% if games is empty %}
         <p>There is no games with your params.</p>
     {% endif %}
 
