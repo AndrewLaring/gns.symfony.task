@@ -14,6 +14,6 @@ games_game_show:
     methods:  GET|POST
 
 games_game_schedule:
-    path:     /schedule
+    path:     /schedule/
     defaults: { _controller: GamesGameBundle:Schedule:index }
     methods:  GET|POST

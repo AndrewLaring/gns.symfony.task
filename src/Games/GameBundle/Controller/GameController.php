@@ -18,24 +18,7 @@ use HTTP_Request2;
 class GameController extends Controller
 {
     /**
-     * Lists all Game entities.
-     *
-     * @Route("/", name="game_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $games = $em->getRepository('GamesGameBundle:Game')->findAll();
-
-        return $this->render('game/index.html.twig', array(
-            'games' => $games,
-        ));
-    }
-
-    /**
-     * Creates a new Game entity.
+     * Parse schedules, creates a new Game entity and put it into DB.
      *
      * @Route("/parse", name="game_parse")
      * @Method({"GET", "POST"})
@@ -51,6 +34,8 @@ class GameController extends Controller
         $season = '2016';
         // add if(isValid($format))
         // add if(isValid($season))
+        // to get $subKey registrate in https://api.fantasydata.net
+        // and subscribe for MLB games schedule.
         $subKey = '64d53ab39e8444d5bca40439bc3d0a68';
 
         $request = new Http_Request2('https://api.fantasydata.net/mlb/v2/' . $format . '/Games/' . $season . '');
