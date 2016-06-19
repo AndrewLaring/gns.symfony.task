@@ -2,16 +2,27 @@
 
 namespace Games\GameBundle\Form;
 
+use Doctrine\ORM\EntityManager;
+use Games\GameBundle\Entity\Game;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\Regex;
 
 class GameType extends AbstractType
 {
+    private $teams;
+
+    public function __construct($teams = array())
+    {
+        $this->teams = $teams;
+    }
+
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -27,19 +38,22 @@ class GameType extends AbstractType
             ->add('datetime', 'datetime')
             ->add('awayteam', TextType::class, [
                 'constraints' => new Length(array('min' => 2, 'max' => 3)),
-                'required'    => false,
-                'empty_data'  => null
+                'required' => false,
+                'empty_data' => null
             ])
             ->add('hometeam', TextType::class, [
                 'constraints' => new Length(array('min' => 2, 'max' => 3)),
-                'required'    => false,
-                'empty_data'  => null
+                'required' => false,
+                'empty_data' => null
             ])
+//            ->add('hometeam', ChoiceType::class, [
+//                'choices' => $this->teams,
+//            ])
             ->add('awayteamid')
             ->add('hometeamid')
             ->add('rescheduledgameid')
             ->add('stadiumid', IntegerType::class, [
-                'required'    => false
+                'required' => false
             ])
             ->add('channel')
             ->add('inning')

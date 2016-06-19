@@ -34,8 +34,6 @@ class GameController extends Controller
         $season = '2016';
         // add if(isValid($format))
         // add if(isValid($season))
-        // to get $subKey registrate in https://api.fantasydata.net
-        // and subscribe for MLB games schedule.
         $subKey = '64d53ab39e8444d5bca40439bc3d0a68';
 
         $request = new Http_Request2('https://api.fantasydata.net/mlb/v2/' . $format . '/Games/' . $season . '');
@@ -56,21 +54,29 @@ class GameController extends Controller
         $request->setBody("{body}");
 
         try {
+
             $response = $request->send();
             $games = json_decode($response->getBody(), true);
-	    $em = $this->getDoctrine()->getManager();
+
+            $em = $this->getDoctrine()->getManager();
+
+            $limit = 50;
+            $cnt = 0;
             foreach ($games as $game) {
                 $model = new Game();
                 foreach ($game as $key => $val) {
                     $model->{"set$key"}($val);
-                }              
+                }
                 $em->persist($model);
-
-            $em->flush();
-die;
+                $cnt++;
+                if ($cnt == $limit) {
+                    $em->flush();
+                    $em->clear();
+                    $cnt = 0;
+                }
             }
-
             $em->flush();
+            $em->clear();
             return $this->redirectToRoute('games_game_homepage');
         } catch (HttpException $ex) {
             echo $ex;

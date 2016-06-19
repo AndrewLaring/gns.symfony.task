@@ -4,29 +4,34 @@ namespace Games\GameBundle\Controller;
 
 use Games\GameBundle\Entity\Game;
 use Games\GameBundle\Form\GameType;
+use JMS\Serializer\SerializerBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class ScheduleController extends Controller
 {
-    public function indexAction(Request $request)
+    public function showAction($game)
     {
-        if (!$request->isMethod(Request::METHOD_POST)) {
-            return $this->redirect($this->generateUrl('games_game_homepage'));
+        $serializer = SerializerBuilder::create()->build();
+        $game = $serializer->toArray($game);
+
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder()
+            ->select('g')
+            ->from('GamesGameBundle:Game', 'g');
+        foreach ($game as $k => $v) {
+            if (isset($v) && $v != null) {
+//                var_dump($k . '=>' . $v);
+                $qb->andWhere("g.{$k} = '$v'");
+            }
         }
-        $game = new Game();
-        $gameForm = $this->createForm(GameType::class, $game);
-        $gameForm->handleRequest($request);
-        if (!$gameForm->isValid()) {
-            return $this->render('GamesGameBundle:Default:index.html.twig', [
-                'form' => $gameForm->createView()
-            ]);
-        }
-        $games = $this->get('games_service')->showAction($gameForm->getData());
-        $games = json_decode($games->getContent());
-        return $this->render('GamesGameBundle:Default:schedule.html.twig', [
-            'games' => $games,
-        ]);
+        $games = $qb->getQuery()->getArrayResult();
+
+        $response = new Response();
+        $response->setContent(json_encode($games));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 }

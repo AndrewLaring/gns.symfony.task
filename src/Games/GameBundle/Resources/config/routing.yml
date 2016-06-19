@@ -8,12 +8,7 @@ games_game_parse:
     requirements: { _format: (xml|json) }
     methods:  GET|POST
 
-games_game_show:
-    path:     /show
-    defaults: { _controller: GamesGameBundle:Default:show }
-    methods:  GET|POST
-
 games_game_schedule:
     path:     /schedule/
-    defaults: { _controller: GamesGameBundle:Schedule:index }
+    defaults: { _controller: GamesGameBundle:Default:schedule }
     methods:  GET|POST

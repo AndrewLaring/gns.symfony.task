@@ -1,5 +1,8 @@
 <?php
 
+set_time_limit(0);
+ini_set('memory_limit', '128M');
+
 use Symfony\Component\HttpFoundation\Request;
 
 /**

@@ -5,7 +5,7 @@ imports:
 
 services:
     games_service:
-        class: Games\GameBundle\Controller\DefaultController
+        class: Games\GameBundle\Controller\ScheduleController
         calls:
                 - [setContainer, [@service_container]]
 
